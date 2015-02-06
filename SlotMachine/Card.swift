@@ -1,5 +1,5 @@
 //
-//  Slot.swift
+//  Card.swift
 //  SlotMachine
 //
 //  Created by Ben Blanchard on 06/02/2015.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Slot {
+struct Card {
     var value = 0
     var image = UIImage(named:"Ace")
     var isRed = true

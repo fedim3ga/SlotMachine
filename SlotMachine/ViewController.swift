@@ -36,8 +36,8 @@ class ViewController: UIViewController {
     let kMarginForView:CGFloat = 10.0
     let kMarginForSlot:CGFloat = 2.0
     let kSixth:CGFloat = 1.0/6.0
-    let kNumberOfContainers = 3
-    let kNumberOfSlots = 3
+    let kNumberOfColumns = 3
+    let kNumberOfRows = 3
     let kThird:CGFloat = 1.0/3.0
     let kHalf:CGFloat = 1.0/2.0
     let kEigth:CGFloat = 1.0/8.0
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    var slots:[[Slot]] = []
+    var board:[[Card]] = []
 
     // IBActions
     func resetButtonPressed(button:UIButton) {
@@ -72,9 +72,9 @@ class ViewController: UIViewController {
         println("betMaxButton Pressed")
     }
     func spinButtonPressed(button:UIButton) {
-        removeSlotImageViews()
+        removeCardImageViews()
         println("spinButton")
-        slots = Factory.createSlots()
+        board = Factory.createCards()
         setupSecondContainer(self.secondContainer)
     }
     //
@@ -112,25 +112,25 @@ class ViewController: UIViewController {
     }
     
     func setupSecondContainer(containerView:UIView) {
-        for var containerNumber = 0; containerNumber < kNumberOfContainers; ++containerNumber {
-            for var slotNumber = 0; slotNumber < kNumberOfSlots; ++slotNumber {
+        for var columnNumber = 0; columnNumber < kNumberOfColumns; ++columnNumber {
+            for var rowNumber = 0; rowNumber < kNumberOfRows; ++rowNumber {
                 
-                var slot:Slot
-                var slotImageView = UIImageView()
+                var card:Card
+                var cardImageView = UIImageView()
                 
-                if slots.count != 0 {
-                    let slotContainer = slots[containerNumber]
-                    slot = slotContainer[slotNumber]
-                    slotImageView.image = slot.image
+                if board.count != 0 {
+                    let columnContainer = board[columnNumber]
+                    card = columnContainer[rowNumber]
+                    cardImageView.image = card.image
                 }
                 else {
-                    slotImageView.image = UIImage(named:"Ace")
+                    cardImageView.image = UIImage(named:"Ace")
                 }
                 
 
-                slotImageView.backgroundColor = UIColor.yellowColor()
-                slotImageView.frame = CGRect(x: containerView.bounds.origin.x + (containerView.bounds.size.width * CGFloat(containerNumber) * kThird), y: containerView.bounds.origin.y + (containerView.bounds.size.height * CGFloat(slotNumber) * kThird), width: containerView.bounds.width * kThird - kMarginForSlot, height: containerView.bounds.height * kThird - kMarginForSlot)
-                containerView.addSubview(slotImageView)
+                cardImageView.backgroundColor = UIColor.yellowColor()
+                cardImageView.frame = CGRect(x: containerView.bounds.origin.x + (containerView.bounds.size.width * CGFloat(columnNumber) * kThird), y: containerView.bounds.origin.y + (containerView.bounds.size.height * CGFloat(rowNumber) * kThird), width: containerView.bounds.width * kThird - kMarginForSlot, height: containerView.bounds.height * kThird - kMarginForSlot)
+                containerView.addSubview(cardImageView)
             }
         }
         
@@ -243,7 +243,7 @@ class ViewController: UIViewController {
     }
     
     
-    func removeSlotImageViews() {
+    func removeCardImageViews() {
         if self.secondContainer != nil {
             let container: UIView? = self.secondContainer
             let subViews:Array? = container!.subviews
