@@ -15,6 +15,7 @@
 		14A93E5E1A84B2D2000CF50C /* SlotMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A93E5D1A84B2D2000CF50C /* SlotMachineTests.swift */; };
 		14A93E681A84DFEF000CF50C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A93E671A84DFEF000CF50C /* Card.swift */; };
 		14A93E6A1A84E0BB000CF50C /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A93E691A84E0BB000CF50C /* Factory.swift */; };
+		14CA241D1A86689E005B7484 /* GameBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA241C1A86689E005B7484 /* GameBrain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		14A93E5D1A84B2D2000CF50C /* SlotMachineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotMachineTests.swift; sourceTree = "<group>"; };
 		14A93E671A84DFEF000CF50C /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		14A93E691A84E0BB000CF50C /* Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
+		14CA241C1A86689E005B7484 /* GameBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			children = (
 				14A93E471A84B2D2000CF50C /* AppDelegate.swift */,
 				14A93E491A84B2D2000CF50C /* ViewController.swift */,
+				14CA241C1A86689E005B7484 /* GameBrain.swift */,
 				14A93E671A84DFEF000CF50C /* Card.swift */,
 				14A93E691A84E0BB000CF50C /* Factory.swift */,
 				14A93E4B1A84B2D2000CF50C /* Main.storyboard */,
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14A93E6A1A84E0BB000CF50C /* Factory.swift in Sources */,
+				14CA241D1A86689E005B7484 /* GameBrain.swift in Sources */,
 				14A93E4A1A84B2D2000CF50C /* ViewController.swift in Sources */,
 				14A93E681A84DFEF000CF50C /* Card.swift in Sources */,
 				14A93E481A84B2D2000CF50C /* AppDelegate.swift in Sources */,

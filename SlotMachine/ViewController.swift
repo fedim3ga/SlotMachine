@@ -62,9 +62,9 @@ class ViewController: UIViewController {
     var board:[[Card]] = []
     
     //Stats
-    var credits = 0
-    var currentBet = 0
-    var winnings = 0
+    var credits = 0.0
+    var currentBet = 0.0
+    var winnings = 0.0
 
     // IBActions
     func resetButtonPressed(button:UIButton) {
@@ -91,13 +91,32 @@ class ViewController: UIViewController {
         
     }
     func betMaxButtonPressed(button:UIButton) {
-        println("betMaxButton Pressed")
+        if credits <= 5 {
+            showAlertWithText(header: "Not enough credits", message: "Bet less")
+        } else {
+            if currentBet < 5 {
+                var creditsToBetMax = 5 - currentBet
+                credits -= creditsToBetMax
+                currentBet += creditsToBetMax
+                updateLabels()
+            } else {
+                showAlertWithText(message: "You can only bet 5 credits at a time")
+            }
+        }
     }
+
     func spinButtonPressed(button:UIButton) {
         removeCardImageViews()
         println("spinButton")
         board = Factory.createCards()
         setupSecondContainer(self.secondContainer)
+        var winningsMultiplier = GameBrain.computeWinnings(board)
+        
+
+        winnings = currentBet * Double(winningsMultiplier)
+        credits += winnings
+        currentBet = 0
+        updateLabels()
     }
     //
     
@@ -278,9 +297,9 @@ class ViewController: UIViewController {
         removeCardImageViews()
         board.removeAll(keepCapacity: true)
         self.setupSecondContainer(secondContainer)
-        credits = 50
-        winnings = 0
-        currentBet = 0
+        credits = 50.0
+        winnings = 0.0
+        currentBet = 0.0
         updateLabels()
     }
     
