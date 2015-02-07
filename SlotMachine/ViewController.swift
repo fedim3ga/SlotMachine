@@ -48,9 +48,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         setupContainerViews()
         setupFirstContainer(firstContainer)
-        setupSecondContainer(secondContainer)
         setupThirdContainer(thirdContainer)
         setupFourthContainer(fourthContainer)
+        hardReset()
 
     }
 
@@ -60,13 +60,35 @@ class ViewController: UIViewController {
     }
     
     var board:[[Card]] = []
+    
+    //Stats
+    var credits = 0
+    var currentBet = 0
+    var winnings = 0
 
     // IBActions
     func resetButtonPressed(button:UIButton) {
         println("resetButton Pressed")
+        hardReset()
     }
     func betOneButtonPressed(button:UIButton) {
         println("betOneButton Pressed")
+        
+        if credits <= 0 {
+            showAlertWithText(header: "No more credits!", message: "Reset game")
+        }
+        else {
+            if currentBet < 5 {
+                currentBet += 1
+                credits -= 1
+                updateLabels()
+            }
+            else {
+                showAlertWithText(message:"You can only bet 5 credits at a time")
+            
+            }
+        }
+        
     }
     func betMaxButtonPressed(button:UIButton) {
         println("betMaxButton Pressed")
@@ -119,8 +141,7 @@ class ViewController: UIViewController {
                 var cardImageView = UIImageView()
                 
                 if board.count != 0 {
-                    let columnContainer = board[columnNumber]
-                    card = columnContainer[rowNumber]
+                    card = board[columnNumber][rowNumber]
                     cardImageView.image = card.image
                 }
                 else {
@@ -251,6 +272,28 @@ class ViewController: UIViewController {
                 view.removeFromSuperview()
             }
         }
+    }
+    
+    func hardReset() {
+        removeCardImageViews()
+        board.removeAll(keepCapacity: true)
+        self.setupSecondContainer(secondContainer)
+        credits = 50
+        winnings = 0
+        currentBet = 0
+        updateLabels()
+    }
+    
+    func updateLabels() {
+        self.creditsLabel.text = "\(credits)"
+        self.betLabel.text = "\(currentBet)"
+        self.winnerPaidLabel.text = "\(winnings)"
+    }
+    
+    func showAlertWithText(header: String = "Warning", message: String) {
+        var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
 }
